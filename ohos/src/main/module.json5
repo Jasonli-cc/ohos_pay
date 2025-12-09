@@ -1,0 +1,10 @@
+{
+  "module": {
+    "name": "ohos_pay",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ]
+  }
+}
