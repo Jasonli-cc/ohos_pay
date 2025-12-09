@@ -81,22 +81,22 @@ enum FinishStatus {
 }
 
 class SubGroupStatusPayload {
-  final String subGroupGenerationId;
-  final String subscriptionId;
-  final String purchaseToken;
-  final String status;
-  final int expiresTime;
+  final String? subGroupGenerationId;
+  final String? subscriptionId;
+  final String? purchaseToken;
+  final String? status;
+  final int? expiresTime;
   final PurchaseOrderPayload? lastPurchaseOrder;
   final SubRenewalInfo? renewalInfo;
 
   SubGroupStatusPayload({
-    required this.subGroupGenerationId,
-    required this.subscriptionId,
-    required this.purchaseToken,
-    required this.status,
-    required this.expiresTime,
-    required this.lastPurchaseOrder,
-    required this.renewalInfo,
+    this.subGroupGenerationId,
+    this.subscriptionId,
+    this.purchaseToken,
+    this.status,
+    this.expiresTime,
+    this.lastPurchaseOrder,
+    this.renewalInfo,
   });
 
   factory SubGroupStatusPayload.fromJson(Map<String, dynamic> json) {

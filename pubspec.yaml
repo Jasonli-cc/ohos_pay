@@ -35,7 +35,7 @@ flutter:
   plugin:
     platforms:
       ohos:
-        package: com.example.ohos_pay
+        package: com.chanwind.ohos_pay
         pluginClass: OhosPayPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
