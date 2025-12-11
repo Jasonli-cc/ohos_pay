@@ -24,8 +24,9 @@ class MethodChannelOhosPay extends OhosPay {
   Future<List<Product>> queryProducts(QueryProductsParameter parameter) async {
     try {
       final productStr = await methodChannel.invokeMethod<String>('queryProducts', parameter.toJson());
+      if (productStr == null) return [];
       print("MethodChannelOhosPay queryProducts: $productStr");
-      final products = json.decode(productStr!) as List;
+      final products = json.decode(productStr) as List;
       return (products).map((e) => Product.fromJson(e as Map<String, dynamic>)).toList();
     } on PlatformException catch (e) {
       throw OhosPayException(e.code, e.message);
@@ -38,6 +39,7 @@ class MethodChannelOhosPay extends OhosPay {
   Future<PurchaseData> buy(PurchaseParameter param) async {
     try {
       final purchaseData = await methodChannel.invokeMethod<String>('buy', param.toJson());
+      if (purchaseData == null) throw OhosPayException("-1", "支付失败");
       print("MethodChannelOhosPay buy: $purchaseData");
       final jsonData = json.decode(purchaseData!) as Map<String, dynamic>;
       print("MethodChannelOhosPay buy: $jsonData");
@@ -76,7 +78,8 @@ class MethodChannelOhosPay extends OhosPay {
     try {
       final purchases = await methodChannel.invokeMethod<String>('queryPurchases', parameter.toJson());
       print("MethodChannelOhosPay queryPurchases: $purchases");
-      final jsonData = json.decode(purchases!) as List;
+      if (purchases == null) return [];
+      final jsonData = json.decode(purchases) as List;
       return (jsonData).map((e) => PurchaseData.fromJson(json.decode(e) as Map<String, dynamic>)).toList();
     } on PlatformException catch (e) {
       throw OhosPayException(e.code, e.message);
